@@ -6,10 +6,17 @@ class App extends React.Component {
       video: exampleVideoData[0],
       videos: exampleVideoData
     };
+    this.onListItemClick = this.onListItemClick.bind(this);
+  }
+
+  onListItemClick(video) {
+    console.log(this);
+    this.setState({
+      video: exampleVideoData[video]
+    });
   }
 
   render(props) {
-    console.log(this.state);
     return (
       <div>
         <Nav />
