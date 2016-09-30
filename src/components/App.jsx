@@ -3,19 +3,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: props.initialCount
+      video: exampleVideoData[0],
+      videos: exampleVideoData
     };
   }
 
-  render() {
-    (
+  render(props) {
+    console.log(this.state);
+    return (
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer/>
+          <VideoPlayer video={this.state.video}/>
         </div>
         <div className="col-md-5">
-          <VideoList/>
+          <VideoList videos={this.state.videos}/>
         </div>
       </div>
     );
