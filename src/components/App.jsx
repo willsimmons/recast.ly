@@ -3,10 +3,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: exampleVideoData[0],
-      videos: exampleVideoData
+      video: exampleVideoData[0] || newVideos,
+      videos: exampleVideoData || newVideos,
     };
     this.videoClick = this.videoClick.bind(this);
+    this.searchClick = this.searchClick.bind(this);
+
   }
 
   videoClick(videoID) {
@@ -14,11 +16,29 @@ class App extends React.Component {
       video: exampleVideoData[videoID]
     });
   }
+    
+  searchClick(data) {
+    options[q] = data;
+  }
+
+  componentDidMount () {
+    var newOptions = {
+      key: window.YOUTUBE_API_KEY,
+      query: 'cats',
+      max: 5
+    };
+    searchYouTube(newOptions, (newVideos) => {
+      this.props.setState({
+        video: newVideos[0],
+        videos: newVideos
+      });
+    });
+  }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav searchClick={this.searchClick}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.video}/>
         </div>
