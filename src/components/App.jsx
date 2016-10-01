@@ -3,35 +3,37 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      video: exampleVideoData[0] || newVideos,
-      videos: exampleVideoData || newVideos,
+      // videos: window.exampleVideoData,
+      video: exampleVideoData[0],
+      videos: exampleVideoData
     };
     this.videoClick = this.videoClick.bind(this);
-    this.searchClick = this.searchClick.bind(this);
+    // this.searchClick = this.searchClick.bind(this);
 
   }
 
   videoClick(videoID) {
     this.setState({
-      video: exampleVideoData[videoID]
+      video: this.state.videos[videoID]
     });
   }
     
-  searchClick(data) {
-    options[q] = data;
-  }
+  // searchClick(data) {
+  //   options[q] = data;
+  // }
 
   componentDidMount () {
-    var newOptions = {
+    var options = {
       key: window.YOUTUBE_API_KEY,
       query: 'cats',
       max: 5
     };
-    searchYouTube(newOptions, (newVideos) => {
-      this.props.setState({
-        video: newVideos[0],
-        videos: newVideos
+    searchYouTube(options, (data) => {
+      this.setState({
+        video: data[0],
+        videos: data
       });
+      console.log('new state, new videos', this.state);
     });
   }
 

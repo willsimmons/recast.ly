@@ -5,7 +5,10 @@ var searchYouTube = (options, callback) => {
     success: (data) => {
       callback(data.items);
     },
-    error: () => console.log('failed')
+    error: () => {
+      callback(exampleVideoData);
+      console.log('failed');
+    }
   });
 };
 
