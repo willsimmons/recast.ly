@@ -8,14 +8,17 @@
   "scripts": {
     "build": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline --watch & live-server --open=./SpecRunner.html --port=1337",
     "test": "live-server --open=./SpecRunner.html --port=1337",
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
+    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
     "jquery": "^2.2.1",
     "lodash": "^4.6.1",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -25,5 +28,6 @@
     "live-server": "^1.1.0",
     "mocha": "2.3.3",
     "sinon": "1.17.3"
-  }
+  },
+  "snyk": true
 }
